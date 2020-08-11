@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Travel-Manager</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nosifer&display=swap" rel="stylesheet">
+  <link type="text/css" rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+    onload="window.$ = window.jQuery = module.exports;"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+  <link type="text/css" rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/caleandar-master/css/theme1.css" />
+</head>
+
+<body>
+  <div class="menu">
+    <nav>
+      <div class="nav-wrapper">
+        <ul class="left title-bar">
+          <!-- Dropdown Trigger -->
+          <li>
+            <a class="dropdown-trigger" href="#!" data-target="dropdown1">
+              Menu
+            </a>
+          </li>
+          <li>
+            <span> Welcome Travel-Manager</span>
+          </li>
+          <li>
+            <a id="min-btn">-</a>
+          </li>
+          <li>
+            <a id="close-btn">x</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <ul id="dropdown1" class="dropdown-content">
+      <li><a id="logout-window">LogOut</a></li>
+      <li><a id="close-window">Close Window</a></li>
+    </ul>
+  </div>
+  <div class="content">
+    <div class="user-menu-block">
+      <div class="menu">
+        <h5>Pages</h5>
+        <div class="row add-data">
+          <div class="input-field col s10">
+            <input  class="validate" type="text" placeholder="Add Page" id="add-page-title" name="add-page-title"/>
+            <label for="add-page-title" data-error="Please..Add Page Name" data-success="right"></label>
+          </div>
+          <div class="col s2 btn-add-data"><a id="btn-add-page">Add</a></div>
+       </div>
+        <ul class="collection" id="pages"></ul>
+      </div>
+      <div id="caleandar"></div>
+    </div>
+    <div id ="list-menu-block" class="list-menu-block">
+      <input type="hidden" id="page_id" value=""/>
+      <h5>Title</h5>
+      <p class=desc></p>
+      <div class="row edit-block">
+        <a class="editPage  modal-trigger" href="#modal1"><span>Edit</span></a>
+      <!-- Modal Structure -->
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+            <div class="input-field col s10">
+                <input class="validate" id="page_title" type="text"  style="margin-top: 20px;"/>
+                <label for="add-page-title" data-error="Please..Add Page Name" data-success=""></label>
+              </div>
+          <textarea id="page_description" style="height: 26rem; resize: none;"></textarea>
+        </div>
+        <div class="modal-footer">
+          <a id="update_page" class="modal-action modal-close">Save</a>
+        </div>
+      </div>
+      </div>
+      <div class="viewer-list">
+        <ul class="collection files"></ul>
+        <div class="col s10">
+            <input id="file" type="file" placeholder="File" class="col" style="width: 241px;" />
+            <a id="btn-add-file">Save</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="viewer">
+      <input type="hidden" id="viewer-idx" value=""/>
+      <h5 id ="file_name"></h5>
+      <img onerror="this.src='https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png';" src='' id='image' style="width:100%;"/>
+    </div>
+  </div>
+  <script type="text/javascript" src="../assets/caleandar-master/js/caleandar.js"></script>
+  <script src="viewerwindow.js"></script>
+</body>
+
+</html>
