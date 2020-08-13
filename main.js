@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 dotenv.config();
-const checkToken = require('../app/js/check-key')
+const checkToken = require('./js/check-key.js');
 // const dotenv = require('dotenv');
 // dotenv.config();
 const Settings = require('./settings.js');
@@ -18,7 +18,7 @@ const settings = new Settings({
 let knex = require('knex')({
   client: "sqlite3",
   connection: {
-    filename: path.join('app', 'data/travelDB.db')
+    filename: path.join('app', './data/travelDB.db')
   },
   useNullAsDefault: true
 });
@@ -43,11 +43,14 @@ function createWindow() {
   })
   const token = settings.get('token');
   pathname = (checkToken(token))? 'renderer/viewerwindow.html':'renderer/loginwindow.html';
+ 
   mainWindow.loadURL(url.format({
     pathname: path.join('app', pathname),
     protocol: 'file:',
     slashes: true
   }));
+  console.log(mainWindow);
+  mainWindow.webContents.openDevTools();
   if(token){
     mainWindow.webContents.on('dom-ready', (e) => {
       dbreadpage();
@@ -63,6 +66,7 @@ ipcMain.on('main:closed', function (e, item) {
 });
 ipcMain.on('main:login-view', function(e){
   dbread();
+  console.log(`${__dirname}`);
   mainWindow.loadURL(`file:${__dirname}/renderer/loginwindow.html`);
 })
 ipcMain.on('main:register-view', function(e){
